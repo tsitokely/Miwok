@@ -18,8 +18,6 @@ package com.example.android.miwok;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
+        // Comment this part for now until we finish the on click listener
+        /*
         // Find the View that shows the numbers category
         TextView numbers = (TextView) findViewById(R.id.numbers);
 
@@ -94,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
                 // Start the new activity
                 startActivity(phrasesIntent);
             }
-        });
+        }); */
+    }
+
+    public void openNumbersList(View View){
+        Intent numbersListIntent = new Intent(MainActivity.this,NumbersActivity.class);
+        startActivity(numbersListIntent);
+
     }
 }
