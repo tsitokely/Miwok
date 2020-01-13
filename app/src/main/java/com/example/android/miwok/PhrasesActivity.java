@@ -17,6 +17,7 @@ package com.example.android.miwok;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -57,6 +58,7 @@ public class PhrasesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(position);
+                Log.v("PhrasesActivity",""+word);
                 // Create and setup the {@link MediaPlayer} for the audio resource associated
                 // with the current word
                 mediaplayer = MediaPlayer.create(PhrasesActivity.this,word.getSoundResourceId());
