@@ -15,6 +15,8 @@
  */
 package com.example.android.miwok;
 
+import androidx.annotation.NonNull;
+
 /**
  * {@link Word} represents a vocabulary word that the user wants to learn.
  * It contains a default translation and a Miwok translation for that word.
@@ -38,10 +40,7 @@ public class Word {
     /**
      * Sound for the word
      */
-    private int mSoundResourceId = NO_SOUND_PROVIDED;
-
-    /** Constant value that represents no sound was provided for this word */
-    private static final int NO_SOUND_PROVIDED = -1;
+    private int mSoundResourceId;
 
     /**
      * Create a new Word object.
@@ -51,7 +50,7 @@ public class Word {
      * @param miwokTranslation is the word in the Miwok language
      * @param soundResourceId is the raw resource ID for the sound associated with the word
      */
-    public Word(String defaultTranslation, String miwokTranslation, int soundResourceId) {
+    Word(String defaultTranslation, String miwokTranslation, int soundResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mSoundResourceId = soundResourceId;
@@ -66,7 +65,7 @@ public class Word {
      * @param imageResourceId    is the drawable resource ID for the image associated with the word
      * @param soundResourceId is the raw resource ID for the sound associated with the word
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int soundResourceId) {
+    Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int soundResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
@@ -76,43 +75,49 @@ public class Word {
     /**
      * Get the default translation of the word.
      */
-    public String getDefaultTranslation() {
+    String getDefaultTranslation() {
         return mDefaultTranslation;
     }
 
     /**
      * Get the Miwok translation of the word.
      */
-    public String getMiwokTranslation() {
+    String getMiwokTranslation() {
         return mMiwokTranslation;
     }
 
     /**
      * Return the image resource ID of the word.
      */
-    public int getImageResourceId() {
+    int getImageResourceId() {
         return mImageResourceId;
     }
 
     /**
      * Returns whether or not there is an image for this word.
      */
-    public boolean hasImage() {
+    boolean hasImage() {
         return mImageResourceId != NO_IMAGE_PROVIDED;
     }
 
     /**
      * Return the sound resource ID of the word.
      */
-    public int getSoundResourceId() {
+    int getSoundResourceId() {
         return mSoundResourceId;
     }
 
     /**
-     * Returns whether or not there is a sound for this word.
+     * Returns the string representation of the {@link Word} object.
      */
-    public boolean hasSound() {
-        return mSoundResourceId != NO_SOUND_PROVIDED;
+    @Override
+    @NonNull
+    public String toString() {
+        return "Word{" +
+                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                ", mImageResourceId=" + mImageResourceId +
+                ", mSoundResourceId=" + mSoundResourceId +
+                '}';
     }
-
-} 
+}
