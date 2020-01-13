@@ -15,7 +15,10 @@
  */
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class PhrasesActivity extends AppCompatActivity {
+    private MediaPlayer mediaplayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,7 @@ public class PhrasesActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
 
         //Creating arrayList of Strings
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("Where are you going?","minto wuksus",R.raw.phrase_where_are_you_going));
         words.add(new Word("What is your name?","tinnә oyaase'nә",R.raw.phrase_what_is_your_name));
         words.add(new Word("My name is...","oyaaset...",R.raw.phrase_my_name_is));
@@ -47,6 +51,19 @@ public class PhrasesActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.list);
 
         listview.setAdapter(itemsAdapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the {@link Word} object at the given position the user clicked on
+                Word word = words.get(position);
+                // Create and setup the {@link MediaPlayer} for the audio resource associated
+                // with the current word
+                mediaplayer = MediaPlayer.create(PhrasesActivity.this,word.getSoundResourceId());
+                // Start the audio file
+                mediaplayer.start();
+            }
+        });
 
     }
 }

@@ -33,9 +33,8 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-
         //Creating arrayList of Strings
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));
         words.add(new Word("two", "otiiko", R.drawable.number_two, R.raw.number_two));
         words.add(new Word("three", "tolookosu", R.drawable.number_three, R.raw.number_three));
@@ -55,7 +54,12 @@ public class NumbersActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mediaplayer = MediaPlayer.create(NumbersActivity.this,R.raw.number_one);
+                // Get the {@link Word} object at the given position the user clicked on
+                Word word = words.get(position);
+                // Create and setup the {@link MediaPlayer} for the audio resource associated
+                // with the current word
+                mediaplayer = MediaPlayer.create(NumbersActivity.this,word.getSoundResourceId());
+                // Start the audio file
                 mediaplayer.start();
             }
         });
