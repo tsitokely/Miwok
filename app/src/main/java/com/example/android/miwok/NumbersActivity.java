@@ -81,7 +81,6 @@ public class NumbersActivity extends AppCompatActivity {
                 mediaplayer.start();
 
                 mediaplayer.setOnCompletionListener(mCompletionListener);
-
             }
         });
     }

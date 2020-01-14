@@ -65,6 +65,9 @@ public class ColorsActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Release the media player if it currently exists because we are about to
+                // play a different sound file
+                releaseMediaPlayer();
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(position);
                 Log.v("ColorsActivity",""+word);
@@ -74,12 +77,7 @@ public class ColorsActivity extends AppCompatActivity {
                 // Start the audio file
                 mediaplayer.start();
 
-                mediaplayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
-                    @Override
-                    public void onCompletion(MediaPlayer mp){
-
-                    }
-                });
+                mediaplayer.setOnCompletionListener(mCompletionListener);
             }
         });
 
