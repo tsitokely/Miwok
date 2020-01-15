@@ -102,4 +102,12 @@ public class FamilyActivity extends AppCompatActivity {
             mediaplayer = null;
         }
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // When the activity is stopped, release the media player resources because we won't
+        // be playing any more sounds.
+        releaseMediaPlayer();
+    }
 }
