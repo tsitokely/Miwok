@@ -5,8 +5,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 public class CategoryAdapter extends FragmentPagerAdapter {
+    final int PAGE_COUNT = 4;
+    private String tabTitles[] = new String[]{"Numbers", "Colors", "Family", "Typical Phrases"};
 
-    public CategoryAdapter(FragmentManager fm) {
+    public CategoryAdapter(FragmentManager fm, MainActivity mainActivity) {
         super(fm);
     }
 
@@ -14,10 +16,10 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if (position == 0) {
             return new NumbersFragment();
-        } else if (position == 1){
-            return new ColorsFragment();
-        } else if (position == 2) {
+        } else if (position == 1) {
             return new FamilyFragment();
+        } else if (position == 2) {
+            return new ColorsFragment();
         } else {
             return new PhrasesFragment();
         }
@@ -25,6 +27,12 @@ public class CategoryAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return PAGE_COUNT;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        return tabTitles[position];
     }
 }
