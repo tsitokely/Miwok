@@ -15,12 +15,10 @@
  */
 package com.example.android.miwok;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,58 +29,13 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
-        // Find different views on the layout to reference them in the java code
-        // Find the View that shows the numbers category
-        TextView numbers = (TextView) findViewById(R.id.numbers);
+        // Find the view pager that will allow the user to swipe between fragments
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        // Find the View that shows the colors category
-        final TextView colors = (TextView) findViewById(R.id.colors);
+        // Create an adapter that knows which fragment should be shown on each page
+        CategoryAdapter adapter = new CategoryAdapter(getSupportFragmentManager());
 
-        // Find the View that shows the family category
-        TextView family = (TextView) findViewById(R.id.family);
-
-        // Find the View that shows the phrases category
-        TextView phrases = (TextView) findViewById(R.id.phrases);
-
-        // Set click listeners to all text views
-        // Set a click listener to numbers
-        numbers.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the numbers View is clicked on.
-            @Override
-            public void onClick(View view) {
-                Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
-                startActivity(numbersIntent);
-            }
-        });
-
-        // Set a click listener to colors
-        colors.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the colors View is clicked on.
-            @Override
-            public void onClick(View view) {
-                Intent colorsIntent = new Intent(MainActivity.this, ColorsActivity.class);
-                startActivity(colorsIntent);
-            }
-        });
-
-        // Set a click listener to family
-        family.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the family View is clicked on.
-            @Override
-            public void onClick(View view) {
-                Intent familyIntent = new Intent(MainActivity.this, FamilyActivity.class);
-                startActivity(familyIntent);
-            }
-        });
-
-        // Set a click listener to phrases
-        phrases.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the phrases View is clicked on.
-            @Override
-            public void onClick(View view) {
-                Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
-                startActivity(phrasesIntent);
-            }
-        });
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
     }
 }
